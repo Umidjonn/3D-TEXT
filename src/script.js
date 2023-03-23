@@ -17,6 +17,10 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+
+// Axes helper
+const axesHelper = new THREE.AxesHelper()
+scene.add(axesHelper)
 /**
  * Textures
  */
@@ -49,8 +53,17 @@ fontLoader.load(
                 bevelSegments: 5
             }
         )
-        const textMaterial = new THREE.MeshBasicMaterial({wireframe:true,
-                                                          color: 'orange'  })
+        // textGeometry.computeBoundingBox()
+        // textGeometry.translate(
+        //     - (textGeometry.boundingBox.max.x - 0.02) * 0.5,
+        //     - (textGeometry.boundingBox.max.y - 0.02) * 0.5,
+        //     - (textGeometry.boundingBox.max.z - 0.03) * 0.5
+        // )
+        textGeometry.center()
+        const textMaterial = new THREE.MeshBasicMaterial({ 
+                                                            wireframe:true,
+                                                            color: 'white'
+                                                               })
         const text = new THREE.Mesh(textGeometry, textMaterial)
         scene.add(text)
     }
